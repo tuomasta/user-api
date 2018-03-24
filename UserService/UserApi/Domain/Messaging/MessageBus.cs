@@ -24,7 +24,7 @@ namespace UserApi.Messaging
             // own handling for created event as we don't want to broadcast the plain password
             if (@event is UserCreatedEvent created)
             {
-                var messageContent = JsonConvert.SerializeObject(new { created.UserId, created.Password });
+                var messageContent = JsonConvert.SerializeObject(new { created.UserId, created.Password, created.Email });
                 await passwordQueue.SendAsync(new BrokeredMessage(messageContent));
 
                 // note side effect

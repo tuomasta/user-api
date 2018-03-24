@@ -1,9 +1,19 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationApi", "AuthenticationApi\AuthenticationApi.csproj", "{15E51661-05C8-4A21-804B-86D28E923524}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2011
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationApi", "AuthenticationApi\AuthenticationApi.csproj", "{15E51661-05C8-4A21-804B-86D28E923524}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationWorker", "AuthenticationWorker\AuthenticationWorker.csproj", "{D99797C0-8E7B-483B-9719-CCFADBCB2E50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationFunctions", "AuthenticationFunctions\AuthenticationFunctions.csproj", "{A61A5981-0C96-4FF3-A017-EC53AFE16672}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C1ACDB6F-A190-4348-A0A8-CF9B1EEDAB5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessTests", "DataAccessTests\DataAccessTests.csproj", "{877CC908-0CF0-4AF9-BF3E-396B59DE5D9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9FDAE32B-DCE4-4771-8C40-A8AAFFD67BEC}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,23 @@ Global
 		{15E51661-05C8-4A21-804B-86D28E923524}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15E51661-05C8-4A21-804B-86D28E923524}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15E51661-05C8-4A21-804B-86D28E923524}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D99797C0-8E7B-483B-9719-CCFADBCB2E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D99797C0-8E7B-483B-9719-CCFADBCB2E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D99797C0-8E7B-483B-9719-CCFADBCB2E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D99797C0-8E7B-483B-9719-CCFADBCB2E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A61A5981-0C96-4FF3-A017-EC53AFE16672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A61A5981-0C96-4FF3-A017-EC53AFE16672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A61A5981-0C96-4FF3-A017-EC53AFE16672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A61A5981-0C96-4FF3-A017-EC53AFE16672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1ACDB6F-A190-4348-A0A8-CF9B1EEDAB5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1ACDB6F-A190-4348-A0A8-CF9B1EEDAB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1ACDB6F-A190-4348-A0A8-CF9B1EEDAB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1ACDB6F-A190-4348-A0A8-CF9B1EEDAB5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{877CC908-0CF0-4AF9-BF3E-396B59DE5D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{877CC908-0CF0-4AF9-BF3E-396B59DE5D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{877CC908-0CF0-4AF9-BF3E-396B59DE5D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{877CC908-0CF0-4AF9-BF3E-396B59DE5D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C54643AC-DC52-4DA2-AE16-35540D1DF101}
 	EndGlobalSection
 EndGlobal
