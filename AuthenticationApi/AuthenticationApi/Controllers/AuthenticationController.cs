@@ -22,12 +22,6 @@ namespace AuthenticationApi.Controllers
             this.logger = logger;
         }
 
-        [HttpGet()]
-        public string Foo() => "foo";
-
-        [HttpGet("error")]
-        public string Error() => throw new Exception("foobar");
-
         // POST api/values
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginData login)
