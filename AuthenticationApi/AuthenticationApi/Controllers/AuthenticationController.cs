@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
@@ -13,17 +14,27 @@ namespace AuthenticationApi.Controllers
     public class AuthenticationController : Controller
     {
         private readonly IConfiguration configuration;
+        private readonly ILogger logger;
 
-        public AuthenticationController(IConfiguration configuration)
+        public AuthenticationController(IConfiguration configuration, ILogger<AuthenticationController> logger)
         {
             this.configuration = configuration;
+            this.logger = logger;
         }
+
+        [HttpGet()]
+        public string Foo() => "foo";
+
+        [HttpGet("error")]
+        public string Error() => throw new Exception("foobar");
 
         // POST api/values
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginData login)
         {
             if (login?.Email == null || login?.Password == null) return BadRequest("Password and/or email is missing.");
+
+            logger.LogInformation("login request {0}", login.Email);
 
             var authConfiguration =  configuration.GetSection("AuthDbConnection");
 
@@ -38,7 +49,11 @@ namespace AuthenticationApi.Controllers
 
             if (auth == null ||
                 auth.Password?.Equals(passwordHash, StringComparison.InvariantCulture) == false ||
-                auth.Email?.Equals(login.Email, StringComparison.InvariantCultureIgnoreCase) == false) return Unauthorized();
+                auth.Email?.Equals(login.Email, StringComparison.InvariantCultureIgnoreCase) == false)
+            {
+                logger.LogInformation("login failed {0}", login.Email);
+                return Unauthorized();
+            }
 
             var keyparts = configuration.GetSection("Secrets:RSA-PrivateKey").GetChildren().Select(c => c.Value);
 
@@ -48,6 +63,7 @@ namespace AuthenticationApi.Controllers
 
             HttpContext.Response.Cookies.Append("SESSIONID", jwtBearerToken, new CookieOptions() { HttpOnly = true, Secure = true });
 
+            logger.LogInformation("login success {0}", login.Email);
             return Created("", "Well done! You are now logged in.");
         }
 
