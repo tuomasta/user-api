@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Configuration;
+using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;
 using UserApi.ExceptionHandling;
 using UserApi.Messaging;
@@ -10,6 +12,9 @@ namespace UserApi
     {
         public static void Configure(HttpConfiguration config)
         {
+            var domains = ConfigurationManager.AppSettings.Get("CorsDomains");
+            if (!string.IsNullOrWhiteSpace(domains)) config.EnableCors(new EnableCorsAttribute(domains, "*", "GET,POST,DELETE"));
+
             ConfigureExceptionHandling(config);
 
             //UserRepo.Configure();
