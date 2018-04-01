@@ -59,6 +59,7 @@ namespace AuthenticationApi.Domain
     {
         private readonly JwtHelper helper;
         public Dictionary<string, object> payload { get; }
+        public long expiresAt => (long) payload["exp"];
 
         public JwtPayload(Dictionary<string, object> payload, JwtHelper helper)
         {

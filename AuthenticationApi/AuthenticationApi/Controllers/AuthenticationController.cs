@@ -53,12 +53,16 @@ namespace AuthenticationApi.Controllers
 
             var privateKey = string.Join(Environment.NewLine, keyparts);
             var jwtHelpert = new JwtHelper(privateKey);
-            var jwtBearerToken =  jwtHelpert.CreatePayload(auth).CreateToken();
+            var payload = jwtHelpert.CreatePayload(auth);
+            var jwtBearerToken = payload.CreateToken();
 
-            HttpContext.Response.Cookies.Append("SESSIONID", jwtBearerToken, new CookieOptions() { HttpOnly = true, Secure = true });
-
+            // uncomment if you want to return the token as http only cookie
+            // HttpContext.Response.Cookies.Append("SESSIONID", jwtBearerToken, new CookieOptions() { HttpOnly = true, Secure = true });
             logger.LogInformation("login success {0}", login.Email);
-            return Created("", "Well done! You are now logged in.");
+            return Created("", new {
+                token = jwtBearerToken,
+                payload.expiresAt
+            });
         }
 
         [HttpPost("logout")]
