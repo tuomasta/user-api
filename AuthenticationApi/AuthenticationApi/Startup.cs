@@ -26,9 +26,12 @@ namespace AuthenticationApi
         {
             var domains = Configuration.GetSection("Cors:Domains").GetChildren().Select(c => c.Value).ToArray();
             if (domains?.Any() == true) {
-                services.AddCors(options => 
-                    options.AddPolicy("default", policy => policy.WithMethods("POST,DELETE").WithOrigins(domains).AllowAnyHeader()));
+                services.AddCors(options =>
+                                 options.AddPolicy(
+                                     "default", 
+                                     policy => policy.WithMethods(new[] { "POST", "DELETE" }).WithOrigins(domains).AllowAnyHeader()));
             }
+
             services.AddMvc(options => options.Filters.Add<GlobalExceptionFilter>());
         }
 
@@ -43,6 +46,8 @@ namespace AuthenticationApi
             {
                 app.UseStatusCodePages("text/plain", "Resource not found. Please check your url.");
             }
+
+            app.UseCors("default");
             app.UseMvc();
         }
     }
