@@ -61,7 +61,9 @@ namespace AuthenticationApi.Controllers
             logger.LogInformation("login success {0}", login.Email);
             return Created("", new {
                 token = jwtBearerToken,
-                payload.expiresAt
+                // additional data so that client does not need to decode those from the token
+                payload.expiresAt,
+                userId = auth.UserId
             });
         }
 
